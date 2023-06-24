@@ -1,0 +1,1 @@
+CREATE KEYSPACE IF NOT EXISTS logging WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : '1' };

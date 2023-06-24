@@ -1,0 +1,137 @@
+version: '3.8'
+services:
+  healthcheck:
+    container_name: healthcheck_service
+    build:
+      context: ./service.healthcheck
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    volumes:
+      - ./service.healthcheck/:/go/src/app
+    networks:
+      - service-network
+  auth:
+    container_name: auth_service
+    depends_on:
+      - kafka
+    networks:
+      - auth-network
+      - service-network
+    build:
+      context: ./service.auth
+      dockerfile: Dockerfile
+    ports:
+      - 4001:4000
+    volumes:
+      - ./service.auth/:/go/src/app
+      - ./service.auth/.ssh/:/root/.ssh
+  users:
+    container_name: users_service
+    networks:
+      - users_service-network
+      - service-network
+    build:
+      context: ./service.users
+      dockerfile: Dockerfile
+    ports:
+      - 4002:4000
+    volumes:
+      - ./service.users/:/go/src/app
+    depends_on:
+      - users_db
+  users_db:
+    container_name: users_db
+    env_file: ./service.users/.env
+    networks:
+      - users_service-network
+    image: postgres
+    volumes:
+      - ./service.users/db/data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: users
+      POSTGRES_SSLMODE: disable
+  ipv4:
+    container_name: ipv4_service
+    env_file: ./service.ipv4/.env
+    networks:
+      - ipv4-network
+      - service-network
+    build:
+      context: ./service.ipv4
+      dockerfile: Dockerfile
+    ports:
+      - 4003:4000
+    volumes:
+      - ./service.ipv4/:/go/src/app
+    depends_on:
+      - ipv4_db
+  ipv4_db:
+    container_name: ipv4_db
+    env_file: ./service.ipv4/.env
+    networks:
+      - ipv4-network
+    image: postgres:latest
+    volumes:
+      - ./service.ipv4/db/data/:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ipv4
+      POSTGRES_SSLMODE: disable
+  logging:
+    container_name: logging_service
+    networks:
+      - service-network
+    build:
+      context: ./service.logging
+      dockerfile: Dockerfile
+    ports:
+      - 4004:4000
+  logging_db:
+    container_name: logging_db
+    image: cassandra:4.1.0
+    ports:
+      - 9042:9042
+    networks:
+      - service-network
+    volumes:
+      - ./service.logging/db/data:/var/lib/cassandra
+    environment:
+      - CASSANDRA_CLUSTER_NAME=loggingdb
+      - CASSANDRA_USER=changeme
+      - CASSANDRA_PASSWORD=changeme
+  logging_db_init:
+    container_name: logging_db_init
+    image: cassandra:4.1.0
+    volumes:
+      - ./service.logging/db/scripts:/docker-entrypoint.sh
+      - ./service.logging/db/scripts:/tmp/cql
+    networks:
+      - service-network
+    environment:
+      - CASSANDRA_USER=changeme
+      - CASSANDRA_PASSWORD=changeme
+    command: >
+            bash ./docker-entrypoint.sh/execute-cql.sh
+  kafka:
+    container_name: kafka
+    image: 'bitnami/kafka:latest'
+    networks:
+      - service-network
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_ADVERTISED_HOST_NAME=localhost
+      - KAFKA_AUTO_CREATE_TOPICS_ENABLE=true
+networks: 
+  users_service-network:
+    driver: bridge
+  auth-network:
+    driver: bridge
+  ipv4-network:
+    driver: bridge
+  service-network:
+    driver: bridge

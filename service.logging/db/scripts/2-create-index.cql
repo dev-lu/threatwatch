@@ -1,0 +1,1 @@
+create index on logging.auth(timestamp);

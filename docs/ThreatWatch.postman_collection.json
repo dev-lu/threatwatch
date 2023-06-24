@@ -1,0 +1,650 @@
+{
+	"info": {
+		"_postman_id": "a4357ce9-cbd8-4e29-b20f-26deeb79f8f0",
+		"name": "ThreatWatch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Proxy routes",
+					"item": [
+						{
+							"name": "users_service",
+							"item": [
+								{
+									"name": "Health",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:4001/api/v1/users/health",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4001",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												"health"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "john@doe.com",
+									"type": "default"
+								},
+								{
+									"key": "pass",
+									"value": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4001/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4001",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4001/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4001",
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4001/api/v1/auth/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4001",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4001/api/v1/auth/validate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4001",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"validate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restricted ressource (Test)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4001/restricted",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4001",
+							"path": [
+								"restricted"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4002/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4002/api/v1/users_service/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"api",
+								"v1",
+								"users_service",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4002/api/v1/get_user/4a35eaf9-78ee-4c46-ad2a-eb92c8ff103f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"api",
+								"v1",
+								"get_user",
+								"4a35eaf9-78ee-4c46-ad2a-eb92c8ff103f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get credentials",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4002/api/v1/get_credentials/john@doe.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"api",
+								"v1",
+								"get_credentials",
+								"john@doe.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "userId",
+									"value": "4a35eaf9-78ee-4c46-ad2a-eb92c8ff103f",
+									"type": "default"
+								},
+								{
+									"key": "oldPassword",
+									"value": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+									"type": "default"
+								},
+								{
+									"key": "newPassword",
+									"value": "7e5442fcfb9d4c029962d963c014a4a537f0249fe97d97fc85c966a2aeec106b",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4002/api/v1/update_user_password/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"api",
+								"v1",
+								"update_user_password",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "user123",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+									"type": "default"
+								},
+								{
+									"key": "firstName",
+									"value": "John",
+									"type": "default"
+								},
+								{
+									"key": "lastName",
+									"value": "Doe",
+									"type": "default"
+								},
+								{
+									"key": "role",
+									"value": "user",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "john@doe.com",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4002/api/v1/create_user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"api",
+								"v1",
+								"create_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4002/api/v1/delete_user?id=5c280e3c-6653-410c-b9ed-a956d5dab573",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"api",
+								"v1",
+								"delete_user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5c280e3c-6653-410c-b9ed-a956d5dab573"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IPv4",
+			"item": [
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4003/api/v1/ipv4/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"api",
+								"v1",
+								"ipv4",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Report",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "ip_address",
+									"value": "1.1.1.1",
+									"type": "default"
+								},
+								{
+									"key": "malicious",
+									"value": "true",
+									"type": "default"
+								},
+								{
+									"key": "comment",
+									"value": "Phishing",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4003/api/v1/ipv4/addreport",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"api",
+								"v1",
+								"ipv4",
+								"addreport"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get reports",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4003/api/v1/ipv4/reports",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"api",
+								"v1",
+								"ipv4",
+								"reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get report by IP",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4003/api/v1/ipv4/getreportsbyip?ip=1.1.1.1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"api",
+								"v1",
+								"ipv4",
+								"getreportsbyip"
+							],
+							"query": [
+								{
+									"key": "ip",
+									"value": "1.1.1.1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete report by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "report_id",
+									"value": "b18b3c6a-5426-41be-8184-37c3ffc0ceb5",
+									"type": "default"
+								},
+								{
+									"key": "malicious",
+									"value": "true",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "comment",
+									"value": "Phishing",
+									"type": "default",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4003/api/v1/ipv4/deletereportbyid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"api",
+								"v1",
+								"ipv4",
+								"deletereportbyid"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logging",
+			"item": [
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4003/api/v1/logging/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"api",
+								"v1",
+								"logging",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/v1/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"v1",
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
