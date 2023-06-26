@@ -14,7 +14,7 @@ The repository includes the following microservices:
 - **Logging**: Store application logs
 - **Healthcheck**: Healthcheck service
 
-![TW_arch](https://github.com/dev-lu/threatwatch/assets/44299200/6a1f6951-fbae-4c88-961a-c9081137c731)
+![TW_arch](https://github.com/dev-lu/threatwatch/assets/44299200/e689299c-3dae-44fe-80cb-f5081dcc8503)
 
 
 ## Getting Started
