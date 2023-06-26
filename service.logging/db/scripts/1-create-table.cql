@@ -1,5 +1,4 @@
-CREATE TABLE IF NOT EXISTS logging.auth (
-    timestamp timestamp,
-    type text,
-    message text,
+CREATE TABLE IF NOT EXISTS logging.auth_log (
+    timestamp TIMESTAMP PRIMARY KEY,
+    message TEXT
 );

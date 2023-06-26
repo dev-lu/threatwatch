@@ -607,12 +607,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4003/api/v1/logging/health",
+							"raw": "http://localhost:4004/api/v1/logging/health",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "4003",
+							"port": "4004",
 							"path": [
 								"api",
 								"v1",

@@ -83,6 +83,9 @@ services:
       POSTGRES_SSLMODE: disable
   logging:
     container_name: logging_service
+    depends_on:
+      - logging_db
+      - kafka
     networks:
       - service-network
     build:

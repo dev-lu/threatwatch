@@ -140,7 +140,7 @@ func login(c *fiber.Ctx) error {
 		HTTPOnly: true,
 	}
 
-	successMessage := "Successful login: " + err.Error()
+	successMessage := "Successful login: " + claims["sub"].(string)
 	writeToKafka(successMessage)
 	fmt.Println(successMessage)
 	c.Cookie(&cookie)

@@ -10,7 +10,7 @@ import (
 const (
 	cassandraHosts      = "logging_db"
 	cassandraKeyspace   = "logging"
-	cassandraTable      = "reports"
+	cassandraTable      = "auth_log"
 	cassandraTimeoutSec = 5
 )
 
